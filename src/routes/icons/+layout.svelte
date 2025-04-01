@@ -13,6 +13,6 @@
 	})
 </script>
 
-<main class="main" bind:clientHeight={winH} bind:clientWidth={winW}>
+<main class="main game-bg" bind:clientHeight={winH} bind:clientWidth={winW}>
 	{@render children()}
 </main>
