@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dungeon } from '$lib'
+
 	let { close } = $props()
 	let OP = $state({
 		width: 50,
@@ -9,15 +10,15 @@
 	})
 
 	const save = () => {
-		dungeon.updateConfig(OP)
+		const obj = { ...OP }
+		dungeon.setSettings(obj)
 		close()
+		dungeon.create()
 	}
-	const create = () => {
-		dungeon.create(OP)
-	};
 
 	$effect(() => {
-		OP = { ...dungeon.config }
+		const obj = dungeon.getSettings()
+		OP = { ...obj }
 	})
 </script>
 
@@ -30,14 +31,12 @@
 			<label class="input input-sm">
 				<span class="label">{slug}</span>
 				<input type="number" bind:value={OP[slug]} />
+				<span class="label">px</span>
 			</label>
 		</li>
 	{/each}
 	<li>
 		<button class="btn btn-info btn-sm" onclick={save}>Save</button>
-	</li>
-	<li>
-		<button class="btn btn-info btn-sm" onclick={create}>Create</button>
 	</li>
 	<li>
 		<button class="btn btn-ghost btn-sm" onclick={close}>Close</button>

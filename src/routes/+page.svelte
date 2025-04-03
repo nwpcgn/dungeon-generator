@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dungeon, DungeonDrawer } from '$lib'
+	import Dungeon from '$lib/dungeon/Dungeon.svelte'
 	// const set1 = new Set()
 	let { data } = $props()
 </script>
@@ -20,6 +20,7 @@
 					</li>
 				{/each}
 			</ul>
+			<Dungeon></Dungeon>
 		</article>
 	</section>
 </main>
